@@ -10,10 +10,11 @@ namespace CLPJ2
         static ConsoleKeyInfo menuSelection;
         static ConsoleKeyInfo subMenuSelection;
         static int optionNumber;
+        static int subOptionNumber;
         static public ConsoleKey MainMenu()
         {
-            Console.Clear();
-            Console.WriteLine("\nMain Menu\nType the number of a menu option below or hit the \"ESC\" key to quit.\n");
+            /*Console.Clear();*/
+            Console.WriteLine("Main Menu\nType the number of a menu option below or hit the \"ESC\" key to quit.\n");
             for (int i = 0; i < menuOption.Length; i++) 
             {
                 Console.WriteLine($"{i + 1}.  {menuOption[i]}");
@@ -27,10 +28,10 @@ namespace CLPJ2
                     switch (optionNumber)
                     {
                         case 1:
-                            TemplateMenu();
+                            SubMenu(templateOption);
                             break;
                         case 2:
-                            ContactMenu();
+                            SubMenu(contactOption);
                             break;
                         case 3:
                             EmailMenu();
@@ -43,48 +44,27 @@ namespace CLPJ2
             return menuSelection.Key;
         }
         
-        static public void TemplateMenu()
+        static public void SubMenu(string[] subMenuOption)
         {
             do
             {
-                Console.Clear();
+                /*Console.Clear();*/
                 Console.WriteLine($"{menuOption[optionNumber - 1]} Menu\nType the number of a menu option below or hit the \"ESC\" key to go back to the Main Menu.\n");
-                for (int i = 0; i < templateOption.Length; i++) 
+                for (int i = 0; i < subMenuOption.Length; i++) 
                 {
-                    Console.WriteLine($"{i + 1}.  {templateOption[i]}");
+                    Console.WriteLine($"{i + 1}.  {subMenuOption[i]}");
                 }
                 subMenuSelection = Console.ReadKey();
                 if (char.IsDigit(subMenuSelection.KeyChar))
                 {
-                    optionNumber = (int)char.GetNumericValue(subMenuSelection.KeyChar);
-                    if (optionNumber <= templateOption.Length && optionNumber > 0)
+                    subOptionNumber = (int)char.GetNumericValue(subMenuSelection.KeyChar);
+                    if (subOptionNumber <= subMenuOption.Length && subOptionNumber > 0)
                     {
-                        Console.WriteLine($"\nYou chose {templateOption[optionNumber - 1]}");
+                        Console.WriteLine($"\nYou chose {subMenuOption[subOptionNumber - 1]}");
                     }
                 }
             }
             while (subMenuSelection.Key != ConsoleKey.Escape);
-        }
-
-        static public void ContactMenu()
-        {
-            for (int i = 0; i < contactOption.Length; i++) 
-            {
-                Console.WriteLine($"{i + 1}.  {contactOption[i]}");
-            }
-            subMenuSelection = Console.ReadKey();
-            if (subMenuSelection.Key == ConsoleKey.Escape)
-            {
-                MainMenu();
-            }
-            else if (char.IsDigit(subMenuSelection.KeyChar))
-            {
-                optionNumber = (int)char.GetNumericValue(subMenuSelection.KeyChar);
-                if (optionNumber <= contactOption.Length && optionNumber > 0)
-                {
-                    Console.WriteLine($"\nYou chose {contactOption[optionNumber - 1]}");
-                }
-            }
         }
 
         static public void EmailMenu()

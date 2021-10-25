@@ -5,8 +5,8 @@ namespace CLPJ2
     class Menu
     {
         static string[] menuOption = {"Templates", "Contacts", "Send Emails"};
-        static string[] templateOption = {"View Templates", "Edit Templates", "New Templates"};
-        static string[] contactOption = {"View Contacts", "Edit Contacts", "New Contacts"};
+        static string[] templateOption = {"View Templates", "Create Templates", "Delete Templates"};
+        static string[] contactOption = {"View Contacts", "Create Contacts", "Delete Contacts"};
         static ConsoleKeyInfo menuSelection;
         static ConsoleKeyInfo subMenuSelection;
         static int optionNumber;

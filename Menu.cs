@@ -13,8 +13,8 @@ namespace CLPJ2
         static int subOptionNumber;
         static public ConsoleKey MainMenu()
         {
-            /*Console.Clear();*/
-            Console.WriteLine("Main Menu\nType the number of a menu option below or hit the \"ESC\" key to quit.\n");
+            Console.Clear();
+            Console.WriteLine("Main Menu\nPress the number of a menu option below or press the \"ESC\" key to quit.\n");
             for (int i = 0; i < menuOption.Length; i++) 
             {
                 Console.WriteLine($"{i + 1}.  {menuOption[i]}");
@@ -48,8 +48,8 @@ namespace CLPJ2
         {
             do
             {
-                /*Console.Clear();*/
-                Console.WriteLine($"{menuOption[optionNumber - 1]} Menu\nType the number of a menu option below or hit the \"ESC\" key to go back to the Main Menu.\n");
+                Console.Clear();
+                Console.WriteLine($"{menuOption[optionNumber - 1]} Menu\nPress the number of a menu option below or press the \"ESC\" key to go back to the Main Menu.\n");
                 for (int i = 0; i < subMenuOption.Length; i++) 
                 {
                     Console.WriteLine($"{i + 1}.  {subMenuOption[i]}");
@@ -61,6 +61,24 @@ namespace CLPJ2
                     if (subOptionNumber <= subMenuOption.Length && subOptionNumber > 0)
                     {
                         Console.WriteLine($"\nYou chose {subMenuOption[subOptionNumber - 1]}");
+                        switch (optionNumber)
+                        {
+                            case 2:
+                                switch (subOptionNumber)
+                                {
+                                    case 1:
+                                        Contact.ViewContacts();
+                                        break;
+                                    case 2:
+                                        Contact.CreateContacts();
+                                        break;
+                                    default: 
+                                        break;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -73,3 +91,5 @@ namespace CLPJ2
         }
     }
 }
+/*Create Menu objects that takes multiple string[] as arguments to create main and submenus?  
+Need to create method for Console.ReadKey() authentication*/

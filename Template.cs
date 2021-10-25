@@ -7,7 +7,8 @@ namespace CLPJ2
         
         public Template ()
         {
-
+            
         }
     }
 }
+/*This should be very similar to the contacts class*/

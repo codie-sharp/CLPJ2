@@ -2,17 +2,17 @@
 
 namespace CLPJ2
 {
-    class Program
+  class Program
+  {
+    static ConsoleKey menuSelection;
+    static void Main(string[] args)
     {
-       static ConsoleKey menuSelection;
-        static void Main(string[] args)
-        {
-         
-          do
-          {
-            menuSelection = Menu.MainMenu();
-          }
-          while(menuSelection != ConsoleKey.Escape);
-        }
+      var menuManager = new MenuManager();
+      do
+      {
+        menuSelection = menuManager.DisplayMainMenu();
+      }
+      while(menuSelection != ConsoleKey.Escape);
     }
+  }
 }

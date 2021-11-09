@@ -22,10 +22,14 @@ namespace CLPJ2
 
     public class TemplateList //Template list object class
     {
-        List<Template> templateList = new List<Template>();
+        List<Template> templateList;
         public TemplateList()
         {
-
+            templateList = ReadWrite.Read<List<Template>>("templates");
+            if (templateList == null)
+            {
+                templateList = new List<Template>();
+            }
         }
 
         public void ViewTemplates()
@@ -54,7 +58,8 @@ namespace CLPJ2
             newTemplateContent = Console.ReadLine();
             var newTemplate = new Template(newTemplateName, newTemplateContent);
             templateList.Add(newTemplate);
-            Console.WriteLine("\nTemplate added.");
+            ReadWrite.Write("templates", templateList);
+            Console.WriteLine("\nTemplate saved.");
             MenuManager.PressAnyKey();
         }
 
@@ -66,8 +71,9 @@ namespace CLPJ2
             {
                 if (templateList[i].TemplateName == template)
                 {
-                    Console.WriteLine($"\n{templateList[i]} deleted.");
                     templateList.RemoveAt(i);
+                    ReadWrite.Write("templates", templateList);
+                    Console.WriteLine($"\n{templateList[i]} deleted.");
                 }
                 else
                 {

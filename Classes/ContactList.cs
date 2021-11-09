@@ -21,10 +21,14 @@ namespace CLPJ2
 
     public class ContactList //Contact list object class
     {
-        List<Contact> contactList = new List<Contact>();
+        List<Contact> contactList;
         public ContactList()
         {
-
+            contactList = ReadWrite.Read<List<Contact>>("contacts");
+            if (contactList == null)
+            {
+                contactList = new List<Contact>();
+            }
         }
 
         public void ViewContacts()
@@ -53,7 +57,8 @@ namespace CLPJ2
             newEmail = Console.ReadLine();
             var newContact = new Contact(newName, newEmail);
             contactList.Add(newContact);
-            Console.WriteLine($"\n{newContact} added.");
+            ReadWrite.Write("contacts", contactList);
+            Console.WriteLine($"\n{newContact} saved.");
             MenuManager.PressAnyKey();
         }
 
@@ -65,8 +70,9 @@ namespace CLPJ2
             {
                 if (contactList[i].Name == contact || contactList[i].Email == contact)
                 {
-                    Console.WriteLine($"\n{contactList[i]} deleted.");
                     contactList.RemoveAt(i);
+                    ReadWrite.Write("contacts", contactList);
+                    Console.WriteLine($"\n{contactList[i]} deleted.");
                 }
                 else
                 {

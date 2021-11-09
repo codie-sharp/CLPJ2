@@ -1,7 +1,7 @@
 # Code Louisville Project 2 (CLPJ2)
 
 
-User selects a template and will be asked questions on values to fill in and the result will be written to disk. 
+User can create and delete email templates and contacts. Templates and contacts can be selected to send emails. 
 
 1. Master loop
     - Loop until ESC key is pressed.
@@ -9,9 +9,7 @@ User selects a template and will be asked questions on values to fill in and the
 3. Load templates and contacts from disk.
 4. Unit tests
 
-To Do (in no specific order...):
-- Get rid of static methods
-- Object orient (solution to static methods?)
+To Do:
 - Read and write from disk
 - Add email address validation
 

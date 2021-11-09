@@ -127,15 +127,22 @@ namespace CLPJ2
         }
         public void MenuHeading(string heading, bool isMainMenu)
         {
+            try
+            {
+                if (menuPath.Contains(heading))
+                {
+                    menuPath.RemoveAt(menuPath.IndexOf(heading) + 1);
+                }
+                else
+                {
+                    menuPath.Add(heading);
+                }
+            }
+            catch (System.Exception)
+            {  
+                //Out of range, logic is busted
+            }
             Console.Clear();
-            if (menuPath.Contains(heading))
-            {
-                menuPath.RemoveAt(menuPath.IndexOf(heading) + 1);
-            }
-            else
-            {
-                menuPath.Add(heading);
-            }
             Console.WriteLine(String.Join(" > ", menuPath.ToArray()));
             if (isMainMenu)
             {

@@ -71,9 +71,16 @@ namespace CLPJ2
             {
                 if (templateList[i].TemplateName == template)
                 {
-                    templateList.RemoveAt(i);
-                    ReadWrite.Write("templates", templateList);
-                    Console.WriteLine($"\n{templateList[i]} deleted.");
+                    try
+                    {
+                        templateList.RemoveAt(i);
+                        ReadWrite.Write("templates", templateList);
+                        Console.WriteLine($"\n{templateList[i]} deleted.");
+                    }
+                    catch (System.Exception)
+                    {
+                        //Out of range, more busted logic
+                    }
                 }
                 else
                 {

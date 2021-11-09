@@ -70,9 +70,17 @@ namespace CLPJ2
             {
                 if (contactList[i].Name == contact || contactList[i].Email == contact)
                 {
-                    contactList.RemoveAt(i);
-                    ReadWrite.Write("contacts", contactList);
-                    Console.WriteLine($"\n{contactList[i]} deleted.");
+                    try
+                    {
+                        contactList.RemoveAt(i);
+                        ReadWrite.Write("contacts", contactList);
+                        Console.WriteLine($"\n{contactList[i]} deleted.");
+                    }
+                    catch (System.Exception)
+                    {
+                        //more out of range busted logic
+                    }
+
                 }
                 else
                 {

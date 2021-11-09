@@ -10,7 +10,6 @@ User can create and delete email templates and contacts. Templates and contacts 
 4. Unit tests
 
 To Do:
-- Read and write from disk
 - Add email address validation
 
 #STRETCH GOAL

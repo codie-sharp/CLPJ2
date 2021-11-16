@@ -66,7 +66,7 @@ namespace CLPJ2
         {
             Console.WriteLine("Enter name or email of contact to delete:");
             string search = Console.ReadLine();
-            List<Contact> deleteThese = new List<Contact>();
+            List<Contact> deleteThese = new List<Contact>(); //New list to keep track of all matching results
             for (int i = 0; i < contactList.Count; i++)
             {
                 if (contactList[i].Name == search || contactList[i].Email == search)
@@ -94,6 +94,7 @@ namespace CLPJ2
         {
             Console.WriteLine("Enter name or email of contact:");
             string search = Console.ReadLine();
+            //LINQ query
             var query = from Contact in contactList where search == Contact.Name || search == Contact.Email select Contact;
             foreach (var Contact in query)
             {

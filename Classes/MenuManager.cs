@@ -9,16 +9,14 @@ namespace CLPJ2
         static string[] mainMenuOptions = {"Main Menu", "Templates", "Contacts", "Send Emails"};
         static string[] templateMenuOptions = {"Template Menu", "View Templates", "Create Templates", "Delete Templates", "Search Templates"};
         static string[] contactMenuOptions = {"Contact Menu", "View Contacts", "Create Contacts", "Delete Contacts", "Search Contacts"};
-        static string[] emailMenuOptions = {"Email Menu", "Select Email Template", "Select Email Contact", "Send Email"};
-        public string[][] masterMenuArray = {templateMenuOptions, contactMenuOptions, emailMenuOptions};
+        public string[][] masterMenuArray = {templateMenuOptions, contactMenuOptions};
         private ConsoleKey menuSelection;
         private ConsoleKey subMenuSelection;
         private static List<string> menuPath = new List<string>();
         public TemplateList templateList = new TemplateList();
         public ContactList contactList = new ContactList();
-        public Emailer emailer = new Emailer();
 
-        public ConsoleKey DisplayMainMenu()
+        public ConsoleKey DisplayMainMenu() //Entry point called in main
         {
             MenuHeading(mainMenuOptions[0], true);
             for(int i = 1; i < mainMenuOptions.Length; i++)
@@ -29,11 +27,11 @@ namespace CLPJ2
             return menuSelection;
         }
 
-        private void DisplaySubMenu(string[] subMenuOptions)
+        private void DisplaySubMenu(string[] subMenuOptions) //Displays the submenu selected. Pressing escape exits back to the Main Menu
         {
             do
             {
-                MenuHeading(subMenuOptions[0], false);
+                MenuHeading(subMenuOptions[0], false); 
                 for(int i = 1; i < subMenuOptions.Length; i++)
                 {
                     Console.WriteLine($"{i}. {subMenuOptions[i]}");
@@ -58,7 +56,7 @@ namespace CLPJ2
             }
         }
 
-        private void subMenuSelect(ConsoleKeyInfo key, string[] subMenuOptions)
+        private void subMenuSelect(ConsoleKeyInfo key, string[] subMenuOptions) //checks which submenu the user selected
         {
             int optionNumber;
             subMenuSelection = key.Key;
@@ -109,33 +107,14 @@ namespace CLPJ2
                                 break;
                         }
                     }
-                    else if (subMenuOptions == emailMenuOptions)
-                    {
-                        MenuHeading(emailMenuOptions[optionNumber], false);
-                        switch (optionNumber)
-                        {
-                            case 1:
-                                emailer.EmailTemplate(templateList);
-                                break;
-                            case 2: 
-                                emailer.EmailContact(contactList);
-                                break;
-                            case 3:
-                                emailer.SendEmail();
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    
                 }
             }
         }
-        public void MenuHeading(string heading, bool isMainMenu)
+        public void MenuHeading(string heading, bool isMainMenu) //takes the first element of the menu array as the heading. If this is the main menu alternate text is displayed
         {
             try
             {
-                if (menuPath.Contains(heading))
+                if (menuPath.Contains(heading)) //If the list already contains the element, remove the element that comes after it (the menu you were just at)
                 {
                     menuPath.RemoveAt(menuPath.IndexOf(heading) + 1);
                 }
@@ -146,11 +125,11 @@ namespace CLPJ2
             }
             catch (System.Exception)
             {  
-                //Out of range, logic is busted
+                //Out of range?
             }
             Console.Clear();
             Console.WriteLine(String.Join(" > ", menuPath.ToArray()));
-            if (isMainMenu)
+            if (isMainMenu) //checking if this is the main menu to display alternate text
             {
                 Console.WriteLine("Press the number of a menu option below or press the \"ESC\" key to quit.\n");
             }
@@ -161,7 +140,7 @@ namespace CLPJ2
             
         }
 
-        static public void PressAnyKey()
+        static public void PressAnyKey() //called throughout the program to pause after task is complete
         {
             Console.WriteLine($"Press any key to return to the {menuPath[menuPath.Count - 2]}");
             Console.ReadKey();

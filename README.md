@@ -1,7 +1,7 @@
 # Code Louisville Project 2 (CLPJ2)
 
 
-User can create and delete email templates and contacts. Templates and contacts can be selected to send emails. 
+User can create, delete, and search email templates and contacts. 
 
 1. Master loop
     - Loop until ESC key is pressed.
@@ -9,8 +9,3 @@ User can create and delete email templates and contacts. Templates and contacts 
 3. Load templates and contacts from disk.
 4. LINQ query
 
-To Do:
-- Add email address validation
-
-#STRETCH GOAL
-- Actually send an email

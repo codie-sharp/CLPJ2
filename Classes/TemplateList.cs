@@ -67,7 +67,7 @@ namespace CLPJ2
         {
             Console.WriteLine("Enter name or content of template to delete:");
             string search = Console.ReadLine();
-            List<Template> deleteThese = new List<Template>();
+            List<Template> deleteThese = new List<Template>(); //New list to keep track of all matching results
             for (int i = 0; i < templateList.Count; i++)
             {
                 if (templateList[i].TemplateName == search || templateList[i].TemplateContent == search)
@@ -94,6 +94,7 @@ namespace CLPJ2
         {
             Console.WriteLine("Enter name or content of template:");
             string search = Console.ReadLine();
+            //LINQ query 
             var query = from Template in templateList where search == Template.TemplateName || search == Template.TemplateContent select Template;
             foreach (var Template in query)
             {

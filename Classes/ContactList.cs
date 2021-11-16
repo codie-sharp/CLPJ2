@@ -65,30 +65,41 @@ namespace CLPJ2
         public void DeleteContacts()
         {
             Console.WriteLine("Enter name or email of contact to delete:");
-            string contact = Console.ReadLine();
+            string search = Console.ReadLine();
+            List<Contact> deleteThese = new List<Contact>();
             for (int i = 0; i < contactList.Count; i++)
             {
-                if (contactList[i].Name == contact || contactList[i].Email == contact)
+                if (contactList[i].Name == search || contactList[i].Email == search)
                 {
-                    try
-                    {
-                        contactList.RemoveAt(i);
-                        ReadWrite.Write("contacts", contactList);
-                        Console.WriteLine($"\n{contactList[i]} deleted.");
-                    }
-                    catch (System.Exception)
-                    {
-                        //more out of range busted logic
-                    }
-
+                    deleteThese.Add(contactList[i]);
                 }
-                else
+            }
+            if (!deleteThese.Any())
+            {
+                Console.WriteLine($"\nContact {search} not found.");
+            }
+            else 
+            {
+                foreach (var contact in deleteThese)
                 {
-                    Console.WriteLine($"\nContact {contact} not found.");
+                    Console.WriteLine($"{contact} deleted.");
+                    contactList.Remove(contact);
                 }
+                ReadWrite.Write("contacts", contactList);
             }
             MenuManager.PressAnyKey();
         }
 
+        public void SearchContacts()
+        {
+            Console.WriteLine("Enter name or email of contact:");
+            string search = Console.ReadLine();
+            var query = from Contact in contactList where search == Contact.Name || search == Contact.Email select Contact;
+            foreach (var Contact in query)
+            {
+                Console.WriteLine(Contact);
+            }
+            MenuManager.PressAnyKey();
+        }
     }
 }

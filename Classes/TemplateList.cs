@@ -65,27 +65,39 @@ namespace CLPJ2
 
         public void DeleteTemplates()
         {
-            Console.WriteLine("Enter name of template to delete:");
-            string template = Console.ReadLine();
+            Console.WriteLine("Enter name or content of template to delete:");
+            string search = Console.ReadLine();
+            List<Template> deleteThese = new List<Template>();
             for (int i = 0; i < templateList.Count; i++)
             {
-                if (templateList[i].TemplateName == template)
+                if (templateList[i].TemplateName == search || templateList[i].TemplateContent == search)
                 {
-                    try
-                    {
-                        templateList.RemoveAt(i);
-                        ReadWrite.Write("templates", templateList);
-                        Console.WriteLine($"\n{templateList[i]} deleted.");
-                    }
-                    catch (System.Exception)
-                    {
-                        //Out of range, more busted logic
-                    }
+                    deleteThese.Add(templateList[i]);
                 }
-                else
+            }
+            if (!deleteThese.Any())
+            {
+                Console.WriteLine($"\nTemplate {search} not found.");
+            }
+            else 
+            {
+                foreach (var template in deleteThese)
                 {
-                    Console.WriteLine($"\n{template} not found.");
+                    Console.WriteLine($"{template} deleted.");
+                    templateList.Remove(template);
                 }
+                ReadWrite.Write("templates", templateList);
+            }
+            MenuManager.PressAnyKey();
+        }
+        public void SearchTemplates()
+        {
+            Console.WriteLine("Enter name or content of template:");
+            string search = Console.ReadLine();
+            var query = from Template in templateList where search == Template.TemplateName || search == Template.TemplateContent select Template;
+            foreach (var Template in query)
+            {
+                Console.WriteLine(Template);
             }
             MenuManager.PressAnyKey();
         }

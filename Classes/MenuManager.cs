@@ -8,7 +8,7 @@ namespace CLPJ2
         //First string of menu arrays go to MenuHeading method
         static string[] mainMenuOptions = {"Main Menu", "Templates", "Contacts", "Send Emails"};
         static string[] templateMenuOptions = {"Template Menu", "View Templates", "Create Templates", "Delete Templates"};
-        static string[] contactMenuOptions = {"Contact Menu", "View Contacts", "Create Contacts", "Delete Contacts"};
+        static string[] contactMenuOptions = {"Contact Menu", "View Contacts", "Create Contacts", "Delete Contacts", "Search Contacts"};
         static string[] emailMenuOptions = {"Email Menu", "Select Email Template", "Select Email Contact", "Send Email"};
         public string[][] masterMenuArray = {templateMenuOptions, contactMenuOptions, emailMenuOptions};
         private ConsoleKey menuSelection;
@@ -98,6 +98,9 @@ namespace CLPJ2
                                 break;
                             case 3:
                                 contactList.DeleteContacts();
+                                break;
+                            case 4:
+                                contactList.SearchContacts();
                                 break;
                             default:
                                 break;

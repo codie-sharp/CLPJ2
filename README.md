@@ -7,7 +7,7 @@ User can create and delete email templates and contacts. Templates and contacts 
     - Loop until ESC key is pressed.
 2. Store contacts and templates in searchable lists.
 3. Load templates and contacts from disk.
-4. Unit tests
+4. LINQ query
 
 To Do:
 - Add email address validation
